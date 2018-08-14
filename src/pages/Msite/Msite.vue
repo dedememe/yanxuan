@@ -1,5 +1,6 @@
 <template>
   <div class="msite-wraper">
+    <!--<Masks/>-->
     <!--头部-->
     <div class="head-wraper">
       <div class="header-top">
@@ -31,29 +32,8 @@
     <div class="lbt-wraper">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/eb9cd3e186765f0d106ed06eec1e43c9.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/e8404dffe57eff5100feb721f9380386.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/799c6a461aac7b0adaf5845586ad3afa.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/eb9cd3e186765f0d106ed06eec1e43c9.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/cb99c824c96f5636574744f0446947a0.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/824f83c152a5ca21c06c63323f53fcf5.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/58e443b4c472e78b8266d70ecc432f6c.jpg?imageView&thumbnail=750x0&quality=75" alt="">
-          </div>
-          <div class="swiper-slide">
-            <img src="https://yanxuan.nosdn.127.net/e8404dffe57eff5100feb721f9380386.jpg?imageView&thumbnail=750x0&quality=75" alt="">
+          <div class="swiper-slide" v-for="(item, index) in banner" :key="index">
+            <img :src="item.picUrl" alt="">
           </div>
         </div>
         <!-- Add Pagination -->
@@ -769,8 +749,12 @@
 import BetterScroll from 'better-scroll'
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
+import {mapState} from 'vuex'
+import Masks from '../../components/Mask/Mask'
 export default {
-  name: '',
+  components: {
+    Masks
+  },
   mounted () {
     this.$nextTick(() => {
       this.scroll = new BetterScroll(this.$refs.listWraper, {
@@ -799,6 +783,12 @@ export default {
         }
       })
     })
+    this.$nextTick(() => {
+      this.$store.dispatch('getBanner')
+    })
+  },
+  computed: {
+    ...mapState(['data', 'banner'])
   }
 }
 // 1rem = 16px

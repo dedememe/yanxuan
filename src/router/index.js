@@ -15,6 +15,10 @@ export default new Router({
       path: '/msite',
       component: Msite
     },
+    // {
+    //   path: '/',
+    //   redirect: '/msite'
+    // },
     {
       path: '/classification',
       component: Classification
