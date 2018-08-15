@@ -1,4 +1,7 @@
 export default {
-  data: {},
-  banner: []
+  data: [],
+  banner: [],
+  home: {},
+  detail: {},
+  nav: {}
 }

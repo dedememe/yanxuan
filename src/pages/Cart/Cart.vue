@@ -16,13 +16,19 @@
         <div class="img-det">去添加点什么吧</div>
       </div>
       <div class="cart-button">
-        <div class="button">登录</div>
+        <div @click="goTo('/login')" class="button">登录</div>
       </div>
     </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    goTo (path) {
+      this.$router.replace(path)
+    }
+  }
+}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

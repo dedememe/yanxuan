@@ -9,106 +9,26 @@
       <div class="cates">
         <div class="cateList" ref="cateList">
           <ul>
-            <li>推荐专区</li>
-            <li>七夕专区</li>
-            <li>爆品区</li>
-            <li>居家</li>
-            <li>鞋包配饰</li>
-            <li>赋服装</li>
-            <li>电器</li>
-            <li>洗护</li>
-            <li>饮食</li>
-            <li>餐厨</li>
-            <li>婴童</li>
-            <li>文体</li>
-            <li>特色区</li>
+            <li v-if="nav"  :class="{active: index === nowIndex}" v-for="(item, index) in nav.categoryL1List" :key="index" @click="getIndex(index)">{{item.name}}</li>
           </ul>
         </div>
         <div class="cate-right" ref="cateRight">
           <div class="cate-banner">
-            <img src="http://yanxuan.nosdn.127.net/0df7dec6efb8baa06643f5ee04735fe9.jpg?imageView&thumbnail=0x196&quality=75" alt="">
+            <img v-if="nav.categoryL1List" v-lazy="nav.categoryL1List[nowIndex].bannerUrl" alt="">
           </div>
-          <div class="cate-right-list">
+          <div class="cate-right-list" v-if="nav.categoryL1List">
             <div class="right-list-head">
-              <div>推荐专区精选</div>
+              <div>
+                <span class="line">
+                  {{nav.categoryL1List[nowIndex].name}}精选
+                </span>
+              </div>
             </div>
             <ul>
-              <li>
+              <li v-if="nav.categoryL1List" v-for="(item, index) in nav.categoryL1List[nowIndex].subCateList" :key="index">
                 <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <img src="http://yanxuan.nosdn.127.net/3b6964c0a4eb6186736da883c17e86f0.png?imageView&quality=85&thumbnail=144x144" alt="">
-                  <div>夏凉满300减200</div>
+                  <img v-if="nav.categoryL1List" v-lazy="item.wapBannerUrl" alt="">
+                  <div v-if="nav.categoryL1List">{{item.name}}</div>
                 </a>
               </li>
             </ul>
@@ -120,18 +40,34 @@
 
 <script>
 import BetterScroll from 'better-scroll'
+import {mapState} from 'vuex'
 export default {
+  data () {
+    return {
+      nowIndex: 0
+    }
+  },
   mounted () {
-    this.$nextTick(() => {
-      this.cateScroll = new BetterScroll(this.$refs.cateList, {
-        scrollY: true,
-        click: true
-      })
-      this.cateRightScroll = new BetterScroll(this.$refs.cateRight, {
-        scrollY: true,
-        click: true
+    this.$store.dispatch('getNav', () => {
+      this.$nextTick(() => {
+        this.cateScroll = new BetterScroll(this.$refs.cateList, {
+          scrollY: true,
+          click: true
+        })
+        this.cateRightScroll = new BetterScroll(this.$refs.cateRight, {
+          scrollY: true,
+          click: true
+        })
       })
     })
+  },
+  computed: {
+    ...mapState(['nav'])
+  },
+  methods: {
+    getIndex (index) {
+      this.nowIndex = index
+    }
   }
 }
 </script>
@@ -178,8 +114,10 @@ export default {
           list-style none
           display flex
           flex-direction column
-          width 100%
-          height 12rem
+          flex-wrap nowrap
+          flex-shrink 0
+          justify-content space-around
+          /*height 12rem*/
           padding-left 0
           li
             width 1.62rem
@@ -188,6 +126,11 @@ export default {
             height .76794rem
             color #333
             font-weight 500
+            &.active
+              border-left 3px solid red
+              color red
+              font-size .36rem
+              line-height .76794rem
       .cate-right
         position absolute
         right 0
@@ -210,8 +153,27 @@ export default {
             width 100%
             height 1.08rem
             div
-              font-size .28rem
-              line-height 1.08rem
+              .line
+                font-size .28rem
+                line-height 1.08rem
+                &::before
+                  content ''
+                  display block
+                  position absolute
+                  left 1rem
+                  top 2.7rem
+                  width 50px
+                  height 1px
+                  background-color #eee
+                &::after
+                  content ''
+                  display block
+                  position absolute
+                  right 1rem
+                  top 2.7rem
+                  width 50px
+                  height 1px
+                  background-color #eee
           ul
             width 100%
             padding 0

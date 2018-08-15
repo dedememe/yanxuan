@@ -14,17 +14,7 @@
       </div>
       <div class="listWraper" ref="listWraper">
         <ul class="routeList">
-          <li>推荐</li>
-          <li>居家</li>
-          <li>鞋包配饰</li>
-          <li>服装</li>
-          <li>电器</li>
-          <li>洗护</li>
-          <li>饮食</li>
-          <li>餐厨</li>
-          <li>婴童</li>
-          <li>文体</li>
-          <li>特色区</li>
+          <li :class="{active: nowIndex === index}" v-for="(item, index) in data" :key="index" @click="getIndex(index)">{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -33,29 +23,17 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(item, index) in banner" :key="index">
-            <img :src="item.picUrl" alt="">
+            <img v-lazy="item.picUrl" alt="">
           </div>
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
       </div>
       <ul class="lbt-ul">
-        <li>
+        <li v-for="(item, index) in home.policyDescList" :key="index">
           <a href="javascript:;">
             <i class="iconfont icon-tick"></i>
-            <span>网易自营品牌</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:;">
-            <i class="iconfont icon-tick"></i>
-            <span>30天无忧退货</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:;">
-            <i class="iconfont icon-tick"></i>
-            <span>48小时快速退款</span>
+            <span>{{item.desc}}</span>
           </a>
         </li>
       </ul>
@@ -68,46 +46,16 @@
         <i class="iconfont icon-57"></i>
       </div>
       <ul class="brandList">
-        <li>
-        <a href="/item/manufacturer?tagId=1026000&page=1&size=100">
+        <li v-for="(item, index) in home.tagList" :key="index">
+        <a href="javascript:;">
           <div class="brand-title">
-            <div class="brandName">CK制造商</div>
-            <div class="brandDetail">25元起</div>
+            <div class="brandName">{{item.name}}</div>
+            <div class="brandDetail">{{item.floorPrice}}元起</div>
             <i class="iconfont icon-57"></i>
           </div>
-          <img src="http://yanxuan.nosdn.127.net/e57c3fb16c4633c292d8c0e7cb053a6f.png?imageView&thumbnail=355x0&quality=65" alt="">
+          <img v-lazy="item.picUrl" alt="">
         </a>
       </li>
-        <li>
-          <a href="/item/manufacturer?tagId=1026000&page=1&size=100">
-            <div class="brand-title">
-              <div class="brandName">CK制造商</div>
-              <div class="brandDetail">25元起</div>
-              <i class="iconfont icon-57"></i>
-            </div>
-            <img src="http://yanxuan.nosdn.127.net/e57c3fb16c4633c292d8c0e7cb053a6f.png?imageView&thumbnail=355x0&quality=65" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="/item/manufacturer?tagId=1026000&page=1&size=100">
-            <div class="brand-title">
-              <div class="brandName">CK制造商</div>
-              <div class="brandDetail">25元起</div>
-              <i class="iconfont icon-57"></i>
-            </div>
-            <img src="http://yanxuan.nosdn.127.net/e57c3fb16c4633c292d8c0e7cb053a6f.png?imageView&thumbnail=355x0&quality=65" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="/item/manufacturer?tagId=1026000&page=1&size=100">
-            <div class="brand-title">
-              <div class="brandName">CK制造商</div>
-              <div class="brandDetail">25元起</div>
-              <i class="iconfont icon-57"></i>
-            </div>
-            <img src="http://yanxuan.nosdn.127.net/e57c3fb16c4633c292d8c0e7cb053a6f.png?imageView&thumbnail=355x0&quality=65" alt="">
-          </a>
-        </li>
       </ul>
     </div>
     <div class="split"></div>
@@ -120,76 +68,16 @@
         </div>
       </div>
       <div class="GoodWraper" ref="newGoodItem">
-        <ul class="newGoodItem" >
-          <li>
+        <ul class="newGoodItem">
+          <li v-for="(item, index) in home.newItemList" :key="index">
             <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/ccdbdc82bdc8929723e4941a93f85550.png?imageView&quality=65&thumbnail=330x330" alt="">
+              <img v-lazy="item.listPicUrl" alt="">
             </div>
             <span class="new-tag">新品特惠</span>
             <span class="new-tag">七夕推荐</span>
-            <div class="name">小龙虾</div>
-            <div class="newGoodDescripe">当季肥美小龙虾。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/ccdbdc82bdc8929723e4941a93f85550.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <span class="new-tag">新品特惠</span>
-            <span class="new-tag">七夕推荐</span>
-            <div class="name">小龙虾</div>
-            <div class="newGoodDescripe">当季肥美小龙虾。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/ccdbdc82bdc8929723e4941a93f85550.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <span class="new-tag">新品特惠</span>
-            <span class="new-tag">七夕推荐</span>
-            <div class="name">小龙虾</div>
-            <div class="newGoodDescripe">当季肥美小龙虾。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/ccdbdc82bdc8929723e4941a93f85550.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <span class="new-tag">新品特惠</span>
-            <span class="new-tag">七夕推荐</span>
-            <div class="name">小龙虾</div>
-            <div class="newGoodDescripe">当季肥美小龙虾。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/ccdbdc82bdc8929723e4941a93f85550.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <span class="new-tag">新品特惠</span>
-            <span class="new-tag">七夕推荐</span>
-            <div class="name">小龙虾</div>
-            <div class="newGoodDescripe">当季肥美小龙虾。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/ccdbdc82bdc8929723e4941a93f85550.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <span class="new-tag">新品特惠</span>
-            <span class="new-tag">七夕推荐</span>
-            <div class="name">小龙虾</div>
-            <div class="newGoodDescripe">当季肥美小龙虾。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/ccdbdc82bdc8929723e4941a93f85550.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <span class="new-tag">新品特惠</span>
-            <span class="new-tag">七夕推荐</span>
-            <div class="name">小龙虾</div>
-            <div class="newGoodDescripe">当季肥美小龙虾。。。。。</div>
-            <div class="price">￥20</div>
+            <div class="name">{{item.name}}</div>
+            <div class="newGoodDescripe">{{item.simpleDesc}}</div>
+            <div class="price">￥{{item.retailPrice}}</div>
           </li>
         </ul>
       </div>
@@ -205,63 +93,15 @@
       </div>
       <div class="GoodWraper" ref="popGoodItem">
         <ul class="popGoodItem" >
-          <li>
+          <li v-for="(item, index) in home.popularItemList" :key="index">
             <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/63b5265bf291e2b8ef3d0ff74de8a5c3.png?imageView&quality=65&thumbnail=330x330" alt="">
+              <img :src="item.listPicUrl" alt="">
             </div>
             <div class="popDetail">
-              <div class="name">棉被</div>
-              <div class="popGoodDescripe">100%棉填充。。。。。</div>
-              <div class="price">￥20</div>
+              <div class="name">{{item.name}}</div>
+              <div class="popGoodDescripe">{{item.simpleDesc}}</div>
+              <div class="price">￥{{item.retailPrice}}</div>
             </div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/63b5265bf291e2b8ef3d0ff74de8a5c3.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <div class="name">棉被</div>
-            <div class="popGoodDescripe">100%棉填充。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/63b5265bf291e2b8ef3d0ff74de8a5c3.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <div class="name">棉被</div>
-            <div class="popGoodDescripe">100%棉填充。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/63b5265bf291e2b8ef3d0ff74de8a5c3.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <div class="name">棉被</div>
-            <div class="popGoodDescripe">100%棉填充。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/63b5265bf291e2b8ef3d0ff74de8a5c3.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <div class="name">棉被</div>
-            <div class="popGoodDescripe">100%棉填充。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/63b5265bf291e2b8ef3d0ff74de8a5c3.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <div class="name">棉被</div>
-            <div class="popGoodDescripe">100%棉填充。。。。。</div>
-            <div class="price">￥20</div>
-          </li>
-          <li>
-            <div class="imgWraper">
-              <img src="http://yanxuan.nosdn.127.net/63b5265bf291e2b8ef3d0ff74de8a5c3.png?imageView&quality=65&thumbnail=330x330" alt="">
-            </div>
-            <div class="name">棉被</div>
-            <div class="popGoodDescripe">100%棉填充。。。。。</div>
-            <div class="price">￥20</div>
           </li>
         </ul>
       </div>
@@ -300,23 +140,14 @@
       </div>
       <div class="choice-item" ref="choiceItem">
         <ul>
-          <li>
-            <a href="javascipt:;">
-              <img src="https://yanxuan.nosdn.127.net/e1b2996dae287c903ea2816785641376.jpg?imageView&thumbnail=575y322&enlarge=1&quality=75" alt="">
+          <li v-for="(item, index) in home.topicList" :key="index">
+            <a :href="item.linkUrl">
+              <img v-lazy="item.itemPicUrl" alt="">
             </a>
             <div class="choice-detail">
-              <h4>青汁兑蜂蜜，轻盈又甜蜜</h4>
-              <p>每天来一杯青汁蜂蜜水，给生活添一点甜蜜</p>
-              <span>129元起</span>
-            </div>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <img src="http://yanxuan.nosdn.127.net/2f49b6ded76919ac7894b02fc9347410.jpg?imageView&thumbnail=575y322&enlarge=1&quality=75" alt="">
-            </a>
-            <div class="choice-detail">
-              <h4>丁磊的好货推荐</h4>
-              <p>网易CEO专栏</p>
+              <h4>{{item.title}}</h4>
+              <p>{{item.subtitle}}</p>
+              <span>{{item.priceInfo}}元起</span>
             </div>
           </li>
         </ul>
@@ -324,422 +155,32 @@
     </div>
     <div class="split"></div>
     <!--居家好物-->
-    <div class="homeGood">
+    <div class="homeGood" v-for="(item, index) in home.cateList" :key="index">
       <div class="homeHeader">
-        <h3>居家好物</h3>
+        <h3>{{item.name}}好物</h3>
       </div>
       <ul>
-        <li>
+        <li v-if="item" v-for="(i, index) in item.itemList" :key="index">
             <div class="homeGoodWraper">
-              <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-              <div class="special">硬度偏好者优选</div>
+              <img v-lazy="i.listPicUrl" alt="">
+              <div class="special">{{i.simpleDesc}}</div>
             </div>
-            <div class="homeGoodDet">冬夏两用保护身体haohaohaohaohaohaohaohaohaohaohao</div>
-            <div class="homeGoodPri">￥2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体haohaohaohaohaohaohaohaohaohaohao</div>
-          <div class="homeGoodPri">￥2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体haohaohaohaohaohaohaohaohaohaohao</div>
-          <div class="homeGoodPri">￥2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体haohaohaohaohaohaohaohaohaohaohao</div>
-          <div class="homeGoodPri">￥2099</div>
+            <div class="homeGoodDet">{{i.name}}</div>
+            <div class="homeGoodPri">￥{{i.couponPrice}}</div>
         </li>
       </ul>
+      <div class="split"></div>
     </div>
     <div class="split"></div>
-    <!--鞋包配饰好物-->
-    <div class="homeGood">
-      <div class="homeHeader">
-        <h3>居家好物</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-      </ul>
-    </div>
-    <div class="split"></div>
-    <!--服装好物-->
-    <div class="homeGood">
-      <div class="homeHeader">
-        <h3>居家好物</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-      </ul>
-    </div>
-    <div class="split"></div>
-    <!--电器好物-->
-    <div class="homeGood">
-    <div class="homeHeader">
-      <h3>居家好物</h3>
-    </div>
-    <ul>
-      <li>
-        <div class="homeGoodWraper">
-          <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-          <div class="special">硬度偏好者优选</div>
-        </div>
-        <div class="homeGoodDet">冬夏两用保护身体</div>
-        <div class="homeGoodPri">2099</div>
-      </li>
-      <li>
-        <div class="homeGoodWraper">
-          <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-          <div class="special">硬度偏好者优选</div>
-        </div>
-        <div class="homeGoodDet">冬夏两用保护身体</div>
-        <div class="homeGoodPri">2099</div>
-      </li>
-      <li>
-        <div class="homeGoodWraper">
-          <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-          <div class="special">硬度偏好者优选</div>
-        </div>
-        <div class="homeGoodDet">冬夏两用保护身体</div>
-        <div class="homeGoodPri">2099</div>
-      </li>
-      <li>
-        <div class="homeGoodWraper">
-          <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-          <div class="special">硬度偏好者优选</div>
-        </div>
-        <div class="homeGoodDet">冬夏两用保护身体</div>
-        <div class="homeGoodPri">2099</div>
-      </li>
-    </ul>
-  </div>
-    <!--洗护好物-->
-    <div class="homeGood">
-      <div class="homeHeader">
-        <h3>居家好物</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-      </ul>
-    </div>
-    <div class="split"></div>
-    <!--饮食好物-->
-    <div class="homeGood">
-      <div class="homeHeader">
-        <h3>居家好物</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-      </ul>
-    </div>
-    <div class="split"></div>
-    <!--餐厨好物-->
-    <div class="homeGood">
-      <div class="homeHeader">
-        <h3>居家好物</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-      </ul>
-    </div>
-    <div class="split"></div>
-    <!--婴童好物-->
-    <div class="homeGood">
-      <div class="homeHeader">
-        <h3>居家好物</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-      </ul>
-    </div>
-    <div class="split"></div>
-    <!--文体好物-->
-    <div class="homeGood">
-      <div class="homeHeader">
-        <h3>居家好物</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-      </ul>
-    </div>
-    <div class="split"></div>
-    <!--特色区好物-->
-    <div class="homeGood">
-      <div class="homeHeader">
-        <h3>居家好物</h3>
-      </div>
-      <ul>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-        <li>
-          <div class="homeGoodWraper">
-            <img src="http://yanxuan.nosdn.127.net/05ecfb1f8beff52a1aa4e48b21dda530.png?imageView&quality=65&thumbnail=330x330" alt="">
-            <div class="special">硬度偏好者优选</div>
-          </div>
-          <div class="homeGoodDet">冬夏两用保护身体</div>
-          <div class="homeGoodPri">2099</div>
-        </li>
-      </ul>
-    </div>
-    <div class="split"></div>
+    <!--底部-->
     <div class="bottom">
       <div class="download">
         <a href="javascript">下载APP</a>
         <a href="javascript">电脑版</a>
       </div>
       <div class="copyright">
-        <p>网易公司版权所有</p>
-        <p>食品经营许可证：122233455</p>
+        <p>网易公司版权所有 © 1997-2018</p>
+        <p>食品经营许可证：：JY13301080111719</p>
       </div>
     </div>
   </div>
@@ -752,43 +193,65 @@ import 'swiper/dist/css/swiper.min.css'
 import {mapState} from 'vuex'
 import Masks from '../../components/Mask/Mask'
 export default {
+  data () {
+    return {
+      nowIndex: 0
+    }
+  },
   components: {
     Masks
   },
   mounted () {
     this.$nextTick(() => {
-      this.scroll = new BetterScroll(this.$refs.listWraper, {
-        scrollX: true,
-        click: true
-      })
-      this.newGoodScroll1 = new BetterScroll(this.$refs.newGoodItem, {
-        scrollX: true,
-        click: true
-      })
       this.newGoodScroll12 = new BetterScroll(this.$refs.popGoodItem, {
         scrollX: true,
         click: true
       })
-      this.newGoodScroll13 = new BetterScroll(this.$refs.choiceItem, {
-        scrollX: true,
-        click: true
-      })
-      this.swiper = new Swiper('.swiper-container', {
-        loop: true,
-        pagination: {
-          el: '.swiper-pagination'
-        },
-        autoplay: {
-          delay: 2000
-        }
+    })
+    //  导航滚动条
+    this.$store.dispatch('getData', () => {
+      this.$nextTick(() => {
+        this.scroll = new BetterScroll(this.$refs.listWraper, {
+          scrollX: true,
+          click: true
+        })
       })
     })
-    this.$nextTick(() => {
-      this.$store.dispatch('getBanner')
+    //  轮播图
+    this.$store.dispatch('getBanner', () => {
+      this.$nextTick(() => {
+        this.swiper = new Swiper('.swiper-container', {
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination'
+          },
+          autoplay: {
+            delay: 2000
+          }
+        })
+      })
+    })
+    //  新品首发
+    this.$store.dispatch('getHome', () => {
+      this.$nextTick(() => {
+        this.newGoodScroll1 = new BetterScroll(this.$refs.newGoodItem, {
+          scrollX: true,
+          click: true
+        })
+        this.newGoodScroll13 = new BetterScroll(this.$refs.choiceItem, {
+          scrollX: true,
+          click: true
+        })
+      })
     })
   },
   computed: {
-    ...mapState(['data', 'banner'])
+    ...mapState(['data', 'banner', 'home', 'detail'])
+  },
+  methods: {
+    getIndex (index) {
+      this.nowIndex = index
+    }
   }
 }
 // 1rem = 16px
@@ -797,6 +260,7 @@ export default {
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixins.styl"
   .msite-wraper
+    overflow hidden
     padding 0 0
     padding-bottom 1rem
     width 100%
@@ -833,15 +297,18 @@ export default {
               color #666
       .listWraper
         width 100%
-        overflow hidden
+        display: flex
+        flex-flow row nowrap
+        flex-shrink 0
         /*margin 20px 0*/
         .routeList
           display flex
           flex-direction row
           flex-wrap nowrap
-          justify-content space-between
-          align-content center
-          width 16rem
+          flex-shrink 0
+          justify-content space-around
+          align-items center
+          /*width 16rem*/
           height .3rem
           padding-left 0
           line-height .3rem
@@ -852,8 +319,19 @@ export default {
             justify-content space-between
             list-style none
             font-size .3rem
+            height .5rem
             margin-right .3rem
             margin-left .3rem
+            position: relative
+            &.active
+              &::before
+                content: ''
+                position absolute
+                bottom: 0
+                left: 0
+                width 100%
+                height: .05rem
+                background-color: red
     .lbt-wraper
       margin-top 1.66rem
       .swiper-container
@@ -886,7 +364,7 @@ export default {
       background-color #eee
     .brand
       width 100%
-      height 6.6rem
+      /*height 6.6rem*/
       .brand-header
         width 100%
         height 50px
@@ -965,7 +443,7 @@ export default {
           flex-direction row
           justify-content space-between
           flex-wrap nowrap
-          width 22rem
+          width 26rem
           padding 0
           li
             width 2.8rem
@@ -1036,7 +514,7 @@ export default {
           flex-direction row
           justify-content space-between
           flex-wrap nowrap
-          width 22rem
+          width 27rem
           padding 0
           li
             width 2.8rem
@@ -1057,6 +535,7 @@ export default {
                 white-space: nowrap;
                 overflow hidden
                 text-overflow ellipsis
+                width 95%
                 position absolute
                 left 0
                 top 0
@@ -1066,6 +545,7 @@ export default {
                 white-space: nowrap;
                 overflow hidden
                 text-overflow ellipsis
+                width 95%
                 position absolute
                 left 0
                 top .4rem
@@ -1151,7 +631,7 @@ export default {
         ul
           list-style none
           padding 0
-          width 12rem
+          width 18.5rem
           margin-left 0
           margin-top 0
           display flex
@@ -1192,11 +672,15 @@ export default {
         list-style none
         padding 0
         margin 0
+        display flex
+        flex-flow row wrap
+        justify-content space-around
+        align-items flex-start
+        text-align left
         li
           width 3.45rem
           display inline-block
           margin-bottom .2rem
-          margin-right .1rem
           .homeGoodWraper
             background-color #F4F4F4
             width 100%
@@ -1211,6 +695,9 @@ export default {
               background-color #F1ECE2
               padding-left .1rem
               box-sizing border-box
+              white-space nowrap
+              text-overflow ellipsis
+              overflow hidden
           .homeGoodDet
             text-align left
             padding-left .1rem

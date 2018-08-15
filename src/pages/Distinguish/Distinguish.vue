@@ -21,23 +21,8 @@
       <div class="lbt-wraper">
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="//yanxuan.nosdn.127.net/cb652ba9c4d32cfefe421233f27c716e.jpg?imageView&quality=75" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="//yanxuan.nosdn.127.net/2e847dc5262aa3e136db2fdb0bb8ce58.jpg?imageView&quality=75" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="//yanxuan.nosdn.127.net/cb652ba9c4d32cfefe421233f27c716e.jpg?imageView&quality=75" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="//yanxuan.nosdn.127.net/2e847dc5262aa3e136db2fdb0bb8ce58.jpg?imageView&quality=75" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="//yanxuan.nosdn.127.net/cb652ba9c4d32cfefe421233f27c716e.jpg?imageView&quality=75" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="//yanxuan.nosdn.127.net/2e847dc5262aa3e136db2fdb0bb8ce58.jpg?imageView&quality=75" alt="">
+            <div class="swiper-slide" v-for="(item, index) in detail.banner" :key="index">
+              <img v-lazy="item.picUrl" alt="">
             </div>
           </div>
           <!-- Add Pagination -->
@@ -47,60 +32,11 @@
       <!--频道-->
       <div class="channels" ref="channelsItem">
         <ul>
-          <li>
+          <li v-for="(item, index) in detail.column" :key="index">
             <a href="javascript">
-              <img src="https://yanxuan.nosdn.127.net/254e04f823354c67d765d68c4012b64e.png?imageView&quality=75" alt="">
-              <div class="channel-title">严选推荐</div>
-              <span>334篇文章</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript">
-              <img src="https://yanxuan.nosdn.127.net/254e04f823354c67d765d68c4012b64e.png?imageView&quality=75" alt="">
-              <div class="channel-title">严选推荐</div>
-              <span>334篇文章</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript">
-              <img src="https://yanxuan.nosdn.127.net/254e04f823354c67d765d68c4012b64e.png?imageView&quality=75" alt="">
-              <div class="channel-title">严选推荐</div>
-              <span>334篇文章</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript">
-              <img src="https://yanxuan.nosdn.127.net/254e04f823354c67d765d68c4012b64e.png?imageView&quality=75" alt="">
-              <div class="channel-title">严选推荐</div>
-              <span>334篇文章</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript">
-              <img src="https://yanxuan.nosdn.127.net/254e04f823354c67d765d68c4012b64e.png?imageView&quality=75" alt="">
-              <div class="channel-title">严选推荐</div>
-              <span>334篇文章</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript">
-              <img src="https://yanxuan.nosdn.127.net/254e04f823354c67d765d68c4012b64e.png?imageView&quality=75" alt="">
-              <div class="channel-title">严选推荐</div>
-              <span>334篇文章</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript">
-              <img src="https://yanxuan.nosdn.127.net/254e04f823354c67d765d68c4012b64e.png?imageView&quality=75" alt="">
-              <div class="channel-title">严选推荐</div>
-              <span>334篇文章</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript">
-              <img src="https://yanxuan.nosdn.127.net/254e04f823354c67d765d68c4012b64e.png?imageView&quality=75" alt="">
-              <div class="channel-title">严选推荐</div>
-              <span>334篇文章</span>
+              <img v-lazy="item.picUrl" alt="">
+              <div class="channel-title">{{item.title}}</div>
+              <span>{{item.articleCount}}</span>
             </a>
           </li>
         </ul>
@@ -113,67 +49,26 @@
       </div>
       <div class="cookies-love">
         <a href="javascript:;">
-          <img src="https://yanxuan.nosdn.127.net/9c16d0d118f00d9db00fa6414aea0487.jpg?imageView&quality=75" alt="">
-          <span class="rec-title">严选恋爱博物馆</span>
-          <span class="rec-price">9.9元起</span>
-          <div class="rec-det">40款恋爱小甜饼高甜来袭！</div>
-          <span class="rec-tag">严选推荐</span>
+          <img v-if="detail.recommendOne" v-lazy="detail.recommendOne.picUrl" alt="">
+          <span v-if="detail.recommendOne" class="rec-title">{{detail.recommendOne.title}}</span>
+          <span v-if="detail.recommendOne" class="rec-price">{{detail.recommendOne.priceInfo}}元起</span>
+          <div v-if="detail.recommendOne" class="rec-det">{{detail.recommendOne.subTitle}}</div>
+          <span v-if="detail.recommendOne" class="rec-tag">{{detail.recommendOne.nickname}}</span>
         </a>
       </div>
       <div class="rec-food">
         <a href="javascript:;">
           <div class="food-left">
             <div class="food-left-author">
-              <img src="https://yanxuan.nosdn.127.net/275bdc66f4d3f841c8879933f2593a27.png?imageView&quality=75&thumbnail=48y48" alt="">
-              <span>饮食组：肉肉</span>
+              <img v-if="detail.recommendTwo" v-lazy="detail.recommendTwo.avatar" alt="">
+              <span v-if="detail.recommendTwo">{{detail.recommendTwo.nickname}}</span>
             </div>
-            <div class="left-title">半价吃到鲜爽小龙虾</div>
-            <div class="rec-detail">7、8月份的小龙虾肥美正当时，各个肉质饱满，细腻弹牙，吃起来真是难吃啊。。。</div>
+            <div v-if="detail.recommendTwo" class="left-title">{{detail.recommendTwo.title}}</div>
+            <div v-if="detail.recommendTwo" class="rec-detail">{{detail.recommendTwo.subTitle}}</div>
           </div>
           <div class="food-right">
-            <img src="https://yanxuan.nosdn.127.net/64360c9a450908a76411b5db9eb1efd9.jpg?imageView&quality=75" alt="">
-            <span>挑战师推荐</span>
-          </div>
-        </a>
-      </div>
-      <div class="rec-food">
-        <a href="javascript:;">
-          <div class="food-left">
-            <div class="food-left-author">
-              <img src="https://yanxuan.nosdn.127.net/275bdc66f4d3f841c8879933f2593a27.png?imageView&quality=75&thumbnail=48y48" alt="">
-              <span>饮食组：肉肉</span>
-            </div>
-            <div class="left-title">半价吃到鲜爽小龙虾</div>
-            <div class="rec-detail">7、8月份的小龙虾肥美正当时，各个肉质饱满，细腻弹牙，吃起来真是难吃啊。。。</div>
-          </div>
-          <div class="food-right">
-            <img src="https://yanxuan.nosdn.127.net/64360c9a450908a76411b5db9eb1efd9.jpg?imageView&quality=75" alt="">
-            <span>挑战师推荐</span>
-          </div>
-        </a>
-      </div>
-      <div class="cookies-love">
-        <a href="javascript:;">
-          <img src="https://yanxuan.nosdn.127.net/9c16d0d118f00d9db00fa6414aea0487.jpg?imageView&quality=75" alt="">
-          <span class="rec-title">严选恋爱博物馆</span>
-          <span class="rec-price">9.9元起</span>
-          <div class="rec-det">40款恋爱小甜饼高甜来袭！</div>
-          <span class="rec-tag">严选推荐</span>
-        </a>
-      </div>
-      <div class="rec-food">
-        <a href="javascript:;">
-          <div class="food-left">
-            <div class="food-left-author">
-              <img src="https://yanxuan.nosdn.127.net/275bdc66f4d3f841c8879933f2593a27.png?imageView&quality=75&thumbnail=48y48" alt="">
-              <span>饮食组：肉肉</span>
-            </div>
-            <div class="left-title">半价吃到鲜爽小龙虾</div>
-            <div class="rec-detail">7、8月份的小龙虾肥美正当时，各个肉质饱满，细腻弹牙，吃起来真是难吃啊。。。</div>
-          </div>
-          <div class="food-right">
-            <img src="https://yanxuan.nosdn.127.net/64360c9a450908a76411b5db9eb1efd9.jpg?imageView&quality=75" alt="">
-            <span>挑战师推荐</span>
+            <img v-if="detail.recommendTwo" v-lazy="detail.recommendTwo.picUrl" alt="">
+            <span v-if="detail.recommendTwo">{{detail.recommendTwo.typeName}}</span>
           </div>
         </a>
       </div>
@@ -181,15 +76,15 @@
         <a href="javascript:;">
           <div class="food-left">
             <div class="food-left-author">
-              <img src="https://yanxuan.nosdn.127.net/275bdc66f4d3f841c8879933f2593a27.png?imageView&quality=75&thumbnail=48y48" alt="">
-              <span>饮食组：肉肉</span>
+              <img v-if="detail.recommendThree" v-lazy="detail.recommendThree.avatar" alt="">
+              <span v-if="detail.recommendThree">{{detail.recommendThree.nickname}}</span>
             </div>
-            <div class="left-title">半价吃到鲜爽小龙虾</div>
-            <div class="rec-detail">7、8月份的小龙虾肥美正当时，各个肉质饱满，细腻弹牙，吃起来真是难吃啊。。。</div>
+            <div v-if="detail.recommendThree" class="left-title">{{detail.recommendThree.title}}</div>
+            <div v-if="detail.recommendThree" class="rec-detail">{{detail.recommendThree.subTitle}}</div>
           </div>
           <div class="food-right">
-            <img src="https://yanxuan.nosdn.127.net/64360c9a450908a76411b5db9eb1efd9.jpg?imageView&quality=75" alt="">
-            <span>挑战师推荐</span>
+            <img v-if="detail.recommendThree" v-lazy="detail.recommendThree.picUrl" alt="">
+            <span v-if="detail.recommendThree">{{detail.recommendThree.typeName}}</span>
           </div>
         </a>
       </div>
@@ -202,20 +97,14 @@
         </div>
         <div class="topic-container" ref="topicContainer">
           <ul>
-            <li>
-              <a href="javascript:;">
+            <li v-for="(item, index) in detail.tenfifteen" :key="index">
+              <a :href="item.url">
                 <img src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/tenFifteen-2a1d0ea11b.png" alt="">
                 <div class="top-head">- 今日话题 -</div>
-                <div class="top-title">你有哪些租房经历</div>
-                <div class="top-det">聊聊你用过的租房神器</div>
-                <span>
-                  <img src="http://nos.netease.com/yanxuan/8945ae63d940cc42406c3f67019c5cb6.png?imageView&thumbnail=48y48" alt="">
-                </span>
-                <span>
-                  <img src="http://nos.netease.com/yanxuan/8945ae63d940cc42406c3f67019c5cb6.png?imageView&thumbnail=48y48" alt="">
-                </span>
-                <span>
-                  <img src="http://nos.netease.com/yanxuan/8945ae63d940cc42406c3f67019c5cb6.png?imageView&thumbnail=48y48" alt="">
+                <div class="top-title">{{item.title}}</div>
+                <div class="top-det">{{item.desc}}</div>
+                <span v-for="(i, index) in item.participantAvatar" :key="index">
+                  <img v-lazy="i" alt="">
                 </span>
                 <span>...</span>
               </a>
@@ -231,65 +120,17 @@
         </div>
       </div>
       <div class="split"></div>
-      <!--严选甄品-->
-      <div class="recommand">
-        <div class="reco-header">
-          <span>为你推荐</span>
-        </div>
-        <div class="cookies-love">
-          <a href="javascript:;">
-            <img src="https://yanxuan.nosdn.127.net/9c16d0d118f00d9db00fa6414aea0487.jpg?imageView&quality=75" alt="">
-            <span class="rec-title">严选恋爱博物馆</span>
-            <span class="rec-price">9.9元起</span>
-            <div class="rec-det">40款恋爱小甜饼高甜来袭！</div>
-            <span class="rec-tag">严选推荐</span>
-          </a>
-        </div>
-        <div class="rec-food">
-          <a href="javascript:;">
-            <div class="food-left">
-              <div class="food-left-author">
-                <img src="https://yanxuan.nosdn.127.net/275bdc66f4d3f841c8879933f2593a27.png?imageView&quality=75&thumbnail=48y48" alt="">
-                <span>饮食组：肉肉</span>
-              </div>
-              <div class="left-title">半价吃到鲜爽小龙虾</div>
-              <div class="rec-detail">7、8月份的小龙虾肥美正当时，各个肉质饱满，细腻弹牙，吃起来真是难吃啊。。。</div>
-            </div>
-            <div class="food-right">
-              <img src="https://yanxuan.nosdn.127.net/64360c9a450908a76411b5db9eb1efd9.jpg?imageView&quality=75" alt="">
-              <span>挑战师推荐</span>
-            </div>
-          </a>
-        </div>
-        <div class="rec-food">
-          <a href="javascript:;">
-            <div class="food-left">
-              <div class="food-left-author">
-                <img src="https://yanxuan.nosdn.127.net/275bdc66f4d3f841c8879933f2593a27.png?imageView&quality=75&thumbnail=48y48" alt="">
-                <span>饮食组：肉肉</span>
-              </div>
-              <div class="left-title">半价吃到鲜爽小龙虾</div>
-              <div class="rec-detail">7、8月份的小龙虾肥美正当时，各个肉质饱满，细腻弹牙，吃起来真是难吃啊。。。</div>
-            </div>
-            <div class="food-right">
-              <img src="https://yanxuan.nosdn.127.net/64360c9a450908a76411b5db9eb1efd9.jpg?imageView&quality=75" alt="">
-              <span>挑战师推荐</span>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="split"></div>
       <!--严选LOOK-->
       <div class="look">
         <div class="look-head">
           <span>严选LOOK</span>
         </div>
-        <img src="//yanxuan.nosdn.127.net/7a0dedf31c42f9ec8750b1b037b06ff6.jpg?imageView&quality=75" alt="">
+        <img v-if="detail.yxLook" :src="detail.yxLook.picUrl" alt="">
         <div class="look-author">
-          <img src="//yanxuan.nosdn.127.net/97e733042bddc9971d9159d72ea00521.jpg?imageView&quality=75&thumbnail=48y48" alt="">
-          <span>alibaba</span>
+          <img v-if="detail.yxLook" :src="detail.yxLook.avatar" alt="">
+          <span v-if="detail.yxLook">{{detail.yxLook.nickname}}</span>
         </div>
-        <div class="look-det">看着喜欢，可是家里的老公掌厨用不上两条，就买来送给同样新婚的闺蜜，送得自己都好高兴</div>
+        <div v-if="detail.yxLook" class="look-det">{{detail.yxLook.content}}</div>
       </div>
       <!--更多精彩-->
       <div class="moreGood">
@@ -298,21 +139,9 @@
           <span>更多精彩</span>
           <div class="after"></div>
         </div>
-        <div class="more-item">
-        <img src="http://yanxuan.nosdn.127.net/c66ba59bad8193e85ab6610686611843.jpg?imageView&quality=75" alt="">
-        <div class="more-det">这款按摩器，美到拿下设计大奖</div>
-      </div>
-        <div class="more-item">
-          <img src="http://yanxuan.nosdn.127.net/c66ba59bad8193e85ab6610686611843.jpg?imageView&quality=75" alt="">
-          <div class="more-det">这款按摩器，美到拿下设计大奖</div>
-        </div>
-        <div class="more-item">
-          <img src="http://yanxuan.nosdn.127.net/c66ba59bad8193e85ab6610686611843.jpg?imageView&quality=75" alt="">
-          <div class="more-det">这款按摩器，美到拿下设计大奖</div>
-        </div>
-        <div class="more-item">
-          <img src="http://yanxuan.nosdn.127.net/c66ba59bad8193e85ab6610686611843.jpg?imageView&quality=75" alt="">
-          <div class="more-det">这款按摩器，美到拿下设计大奖</div>
+        <div class="more-item" v-for="(item, index) in detail.findMore" :key="index">
+          <img :src="item.itemPicUrl" alt="">
+          <div class="more-det">{{item.subTitle}}</div>
         </div>
       </div>
       <div class="split-end"></div>
@@ -323,28 +152,35 @@
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
 import BetterScroll from 'better-scroll'
+import {mapState} from 'vuex'
 export default {
   mounted () {
-    this.$nextTick(() => {
-      this.swiper = new Swiper('.swiper-container', {
-        direction: 'horizontal',
-        spaceBetween: 10,
-        loop: true,
-        slidesPerView: 1.2,
-        centeredSlides: true,
-        autoplay: {
-          delay: 2000
-        }
-      })
-      this.channelsScroll = new BetterScroll(this.$refs.channelsItem, {
-        scrollX: true,
-        click: true
-      })
-      this.topicsScroll = new BetterScroll(this.$refs.topicContainer, {
-        scrollX: true,
-        click: true
+    //  轮播图
+    this.$store.dispatch('getDetail', () => {
+      this.$nextTick(() => {
+        this.swiper = new Swiper('.swiper-container', {
+          direction: 'horizontal',
+          spaceBetween: 10,
+          loop: true,
+          slidesPerView: 1.2,
+          centeredSlides: true,
+          autoplay: {
+            delay: 2000
+          }
+        })
+        this.channelsScroll = new BetterScroll(this.$refs.channelsItem, {
+          scrollX: true,
+          click: true
+        })
+        this.topicsScroll = new BetterScroll(this.$refs.topicContainer, {
+          scrollX: true,
+          click: true
+        })
       })
     })
+  },
+  computed: {
+    ...mapState(['detail'])
   }
 }
 </script>
@@ -490,7 +326,8 @@ export default {
             color #000
             background-color #fff
           .rec-price
-            margin-left 2.55rem
+            text-align right
+            margin-left 1.2rem
             font-size .28rem
             color #000
             font-size .36rem
@@ -572,7 +409,7 @@ export default {
           flex-direction row
           list-style none
           margin-top 0
-          width 12.3rem
+          width 18rem
           padding 0
           li
             margin-left .2rem
@@ -640,6 +477,7 @@ export default {
       width 100%
       padding 0 .3rem
       background-color #eee
+      text-align center
       .more-head
         width 100%
         height 1.2rem
@@ -655,25 +493,25 @@ export default {
           background-color #eea
           vertical-align middle
       .more-item
-        width 100%
+        width 345px
         height 4.97rem
         background-color #fff
         margin-bottom .3rem
+        text-align center
         img
-          width 6.42rem
+          width 100%
           height 3.6rem
           margin-top .3rem
         .more-det
           text-align left
           margin-left .3rem
           margin-top .4rem
+          white-space nowrap
+          text-overflow ellipsis
+          overflow hidden
     .split-end
       width 100%
       height .3rem
       margin-top -.3rem
       background-color #eee
-    .blank
-      width 100%
-      height 10rem
-      /*background-color aqua*/
 </style>

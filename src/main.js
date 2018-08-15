@@ -7,6 +7,12 @@ import './common/rem'
 import './mock/mockServer'
 import store from '../src/store'
 
+import VueLazyload from 'vue-lazyload'
+import loading from './common/img/lazyload2.gif'
+Vue.use(VueLazyload, {
+  loading
+})
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -2,17 +2,17 @@
     <div class="login">
       <div class="login-topBar">
         <a class="topBar-left" href="javascript:;">
-          <i class="iconfont icon-shouye"></i>
+          <i @click="goTo('/msite')" class="iconfont icon-shouye"></i>
         </a>
         <a class="topBar-middle" href="javascript:;">
           <img src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-11d65342f9.png">
         </a>
         <div class="topBar-right">
           <a href="javascript:;">
-            <i class="iconfont icon-sousuo"></i>
+            <i @click="goTo('/msite')" class="iconfont icon-sousuo"></i>
           </a>
           <a href="javascript:;">
-            <i class="iconfont icon-gouwuche"></i>
+            <i @click="goTo('/cart')" class="iconfont icon-gouwuche"></i>
           </a>
         </div>
       </div>
@@ -33,7 +33,11 @@
 
 <script>
 export default {
-  name: ''
+  methods: {
+    goTo (path) {
+      this.$router.replace(path)
+    }
+  }
 }
 </script>
 

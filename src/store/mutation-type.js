@@ -1,1 +1,5 @@
+export const RECIEVE_DATA = 'recieve_data'
 export const RECIEVE_BANNER = 'recieve_banner'
+export const RECIEVE_HOME = 'recieve_home'
+export const RECIEVE_DETAIL = 'recieve_detail'
+export const RECIEVE_NAV = 'recieve_nav'
