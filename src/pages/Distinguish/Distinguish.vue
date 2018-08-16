@@ -22,7 +22,7 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(item, index) in detail.banner" :key="index">
-              <img v-lazy="item.picUrl" alt="">
+              <img :src="item.picUrl" alt="">
             </div>
           </div>
           <!-- Add Pagination -->

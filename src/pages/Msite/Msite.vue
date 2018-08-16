@@ -1,6 +1,6 @@
 <template>
   <div class="msite-wraper">
-    <!--<Masks/>-->
+    <Masks/>
     <!--头部-->
     <div class="head-wraper">
       <div class="header-top">
@@ -23,7 +23,7 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(item, index) in banner" :key="index">
-            <img v-lazy="item.picUrl" alt="">
+            <img :src="item.picUrl" alt="">
           </div>
         </div>
         <!-- Add Pagination -->
@@ -45,8 +45,8 @@
         <span class="title">品牌制造商直供</span>
         <i class="iconfont icon-57"></i>
       </div>
-      <ul class="brandList">
-        <li v-for="(item, index) in home.tagList" :key="index">
+      <ul class="brandList" v-if="home.tagList">
+        <li v-for="(item, index) in home.tagList.slice(15, 19)" :key="index">
         <a href="javascript:;">
           <div class="brand-title">
             <div class="brandName">{{item.name}}</div>

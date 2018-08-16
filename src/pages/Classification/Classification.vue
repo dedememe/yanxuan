@@ -14,7 +14,7 @@
         </div>
         <div class="cate-right" ref="cateRight">
           <div class="cate-banner">
-            <img v-if="nav.categoryL1List" v-lazy="nav.categoryL1List[nowIndex].bannerUrl" alt="">
+            <img v-if="nav.categoryL1List" :src="nav.categoryL1List[nowIndex].bannerUrl" alt="">
           </div>
           <div class="cate-right-list" v-if="nav.categoryL1List">
             <div class="right-list-head">
@@ -27,8 +27,8 @@
             <ul>
               <li v-if="nav.categoryL1List" v-for="(item, index) in nav.categoryL1List[nowIndex].subCateList" :key="index">
                 <a href="javascript:;">
-                  <img v-if="nav.categoryL1List" v-lazy="item.wapBannerUrl" alt="">
-                  <div v-if="nav.categoryL1List">{{item.name}}</div>
+                  <img :src="item.wapBannerUrl" alt="">
+                  <div>{{item.name}}</div>
                 </a>
               </li>
             </ul>

@@ -20,9 +20,10 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
 body
-  width 7.5rem
+  width 100%
   padding 0
   margin 0
+  box-sizing border-box
   #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
