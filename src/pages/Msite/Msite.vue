@@ -19,25 +19,7 @@
       </div>
     </div>
     <!--轮播图-->
-    <div class="lbt-wraper">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item, index) in banner" :key="index">
-            <img :src="item.picUrl" alt="">
-          </div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-      </div>
-      <ul class="lbt-ul">
-        <li v-for="(item, index) in home.policyDescList" :key="index">
-          <a href="javascript:;">
-            <i class="iconfont icon-tick"></i>
-            <span>{{item.desc}}</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <Carousel/>
     <div class="split"></div>
     <!--品牌制造商直供-->
     <div class="brand">
@@ -188,10 +170,10 @@
 
 <script>
 import BetterScroll from 'better-scroll'
-import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
 import {mapState} from 'vuex'
 import Masks from '../../components/Mask/Mask'
+import Carousel from '../../components/Carousel/Carousel'
 export default {
   data () {
     return {
@@ -199,7 +181,8 @@ export default {
     }
   },
   components: {
-    Masks
+    Masks,
+    Carousel
   },
   mounted () {
     this.$nextTick(() => {
@@ -214,20 +197,6 @@ export default {
         this.scroll = new BetterScroll(this.$refs.listWraper, {
           scrollX: true,
           click: true
-        })
-      })
-    })
-    //  轮播图
-    this.$store.dispatch('getBanner', () => {
-      this.$nextTick(() => {
-        this.swiper = new Swiper('.swiper-container', {
-          loop: true,
-          pagination: {
-            el: '.swiper-pagination'
-          },
-          autoplay: {
-            delay: 2000
-          }
         })
       })
     })
@@ -332,32 +301,6 @@ export default {
                 width 100%
                 height: .05rem
                 background-color: red
-    .lbt-wraper
-      margin-top 1.66rem
-      .swiper-container
-        width 100%
-        height 200px
-        .swiper-wrapper
-          .swiper-slide
-            img
-              width 100%
-              height 100%
-      .lbt-ul
-        display flex
-        flex-direction row
-        justify-content space-between
-        list-style none
-        padding-left 0
-        li
-          margin-left .1rem
-          margin-right .1rem
-          a
-            text-decoration none
-            color #000
-            font-size .26rem
-            i
-              color #F5DEB3
-              font-size .26rem
     .split
       width 100%
       height .2rem

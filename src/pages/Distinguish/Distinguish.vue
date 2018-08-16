@@ -120,30 +120,10 @@
         </div>
       </div>
       <div class="split"></div>
-      <!--严选LOOK-->
-      <div class="look">
-        <div class="look-head">
-          <span>严选LOOK</span>
-        </div>
-        <img v-if="detail.yxLook" :src="detail.yxLook.picUrl" alt="">
-        <div class="look-author">
-          <img v-if="detail.yxLook" :src="detail.yxLook.avatar" alt="">
-          <span v-if="detail.yxLook">{{detail.yxLook.nickname}}</span>
-        </div>
-        <div v-if="detail.yxLook" class="look-det">{{detail.yxLook.content}}</div>
-      </div>
+      <!--严选Look-->
+      <Look/>
       <!--更多精彩-->
-      <div class="moreGood">
-        <div class="more-head">
-          <div class="before"></div>
-          <span>更多精彩</span>
-          <div class="after"></div>
-        </div>
-        <div class="more-item" v-for="(item, index) in detail.findMore" :key="index">
-          <img :src="item.itemPicUrl" alt="">
-          <div class="more-det">{{item.subTitle}}</div>
-        </div>
-      </div>
+      <More/>
       <div class="split-end"></div>
     </div>
 </template>
@@ -153,7 +133,14 @@ import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
 import BetterScroll from 'better-scroll'
 import {mapState} from 'vuex'
+
+import Look from '../../components/Look/Look'
+import More from '../../components/More/More'
 export default {
+  components: {
+    Look,
+    More
+  },
   mounted () {
     //  轮播图
     this.$store.dispatch('getDetail', () => {
