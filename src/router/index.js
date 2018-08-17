@@ -7,8 +7,10 @@ import Profile from '../pages/Profile/Profile'
 // import Classification from '../pages/Classification/Classification'
 // import Cart from '../pages/Cart/Cart'
 // import Login from '../pages/Login/Login'
+// import s from '../pages/Interlayer/Interlayer'
 
 //  路由懒加载 使用import()引入模块, webpack会对组件进行拆分(单独)打包(code split)
+const Interlayer = () => import('../pages/Interlayer/Interlayer')
 const Msite = () => import('../pages/Msite/Msite')
 const Login = () => import('../pages/Login/Login')
 const Cart = () => import('../pages/Cart/Cart')
@@ -20,6 +22,13 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/interlayer',
+      component: Interlayer,
+      meta: {
+        showFoot: false
+      }
+    },
+    {
       path: '/msite',
       component: Msite,
       meta: {
@@ -28,9 +37,9 @@ export default new Router({
     },
     {
       path: '/',
-      redirect: '/msite',
+      redirect: '/interlayer',
       meta: {
-        showFoot: true
+        showFoot: false
       }
     },
     {
